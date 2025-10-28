@@ -1,4 +1,4 @@
-import OPENWEATHER_KEY from "..config.js";
+import OPENWEATHER_KEY from ".config.js";
 
 const url = 'https://api.openweathermap.org/data/2.5/'
 
