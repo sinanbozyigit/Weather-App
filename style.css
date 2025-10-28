@@ -7,11 +7,13 @@
 body{
     font-family: 'montserrat', sans-serif;
     color: #fff;
-    background-image: url("bg.jpeg");
+    background-image: url("/İmages/bg.jpeg");
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .app{
@@ -19,8 +21,13 @@ body{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: rgba(0, 0, 0, .7);
-    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    flex: 1; 
+    padding-bottom: 20px; 
+    margin: 50px 400px 50px 400px;
 }
 
 .header{
@@ -69,4 +76,67 @@ body{
 .minmax{
     font-size: 24px;
     text-shadow: 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0,0,0,0.7);
+}
+
+footer .footer-logo {
+    width: 80px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+footer p {
+    display: inline;
+    font-size: 14px;
+    color: #fff;
+}
+
+footer a {
+    color: #fff;           
+    text-decoration: none; 
+}
+
+footer a:hover {
+    color: rgb(60, 183, 255);         
+    transition: color 0.3s;
+}
+
+@media (max-width: 600px) {
+    .app {
+        margin: 20px;
+    }
+
+    .header input {
+        padding: 6px;
+        font-size: 16px;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    footer .footer-logo {
+        width: 60px;
+        margin: 0 0 10px 0;
+    }
+
+    footer p {
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .header input {
+        padding: 4px;
+        font-size: 14px;
+    }
 }
