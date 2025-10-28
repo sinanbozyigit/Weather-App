@@ -1,5 +1,7 @@
+import OPENWEATHER_KEY from "..config.js";
+
 const url = 'https://api.openweathermap.org/data/2.5/'
-const key = 'a01d6fae903b95f0449635bc13481979'
+
 
 const setQuery = (e) => {
     if(e.keyCode == '13'){
