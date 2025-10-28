@@ -1,38 +1,35 @@
-import OPENWEATHER_KEY from ".config.js";
-
-const url = 'https://api.openweathermap.org/data/2.5/'
-
+const url = 'https://api.openweathermap.org/data/2.5/';
+const searchBar = document.getElementById('searchBar');
 
 const setQuery = (e) => {
-    if(e.keyCode == '13'){
+    if(e.keyCode == 13){
         getResult(searchBar.value)
     }
 }
 
 const getResult = (cityName) => {
-    let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`
+    // OPENWEATHER_KEY artık global değişken olarak var
+    let query = `${url}weather?q=${cityName}&appid=${OPENWEATHER_KEY}&units=metric&lang=tr`;
+
     fetch(query)
-    .then(weather => {
-        return weather.json()
-    })
+    .then(weather => weather.json())
     .then(displayResult)
+    .catch(err => {
+        console.log(err);
+        alert("API çağrısında hata oluştu!");
+    });
 }
 
 const displayResult = (result) => {
-    let city = document.querySelector('.city')
-    city.innerText = `${result.name} , ${result.sys.country}`
+    if (!result || result.cod !== 200) {
+        alert(`Hata: ${result.message || "Şehir bulunamadı"}`);
+        return;
+    }
 
-    let temp = document.querySelector('.temp')
-    temp.innerText = `${Math.round(result.main.temp)}°C`
-
-    let desc = document.querySelector('.desc')
-    desc.innerText = result.weather[0].description
-
-    let minmax = document.querySelector('.minmax')
-    minmax.innerText = `${Math.round(result.main.temp_min)}°C/
-    ${Math.round(result.main.temp_max)}°C`
+    document.querySelector('.city').innerText = `${result.name}, ${result.sys.country}`;
+    document.querySelector('.temp').innerText = `${Math.round(result.main.temp)}°C`;
+    document.querySelector('.desc').innerText = result.weather[0].description;
+    document.querySelector('.minmax').innerText = `${Math.round(result.main.temp_min)}°C / ${Math.round(result.main.temp_max)}°C`;
 }
-
-const searchBar = document.getElementById('searchBar');
 
 searchBar.addEventListener('keypress', setQuery);
